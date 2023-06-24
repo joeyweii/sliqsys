@@ -31,8 +31,9 @@ class BDDSystem {
 public:
     enum class BitWidthControl { ExtendBitWidth, DropLSB };
 
-    explicit BDDSystem()
-        : _ddManager(Cudd_Init(0, 0, CUDD_UNIQUE_SLOTS, CUDD_CACHE_SLOTS, 0))
+    explicit BDDSystem(int nVars = 0)
+        : _ddManager(
+              Cudd_Init(nVars, nVars, CUDD_UNIQUE_SLOTS, CUDD_CACHE_SLOTS, 0))
         , _w(4)
         , _initBitWidth(4)
         , _bitWidthControl(BitWidthControl::ExtendBitWidth) {}
